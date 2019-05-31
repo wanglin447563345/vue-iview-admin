@@ -7,6 +7,10 @@
 const path = require('path')
 const port = 9000  //dev port
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   devServer: {
     port,
@@ -17,7 +21,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.join(__dirname, 'src')
+        '@': resolve('src')
       }
     }
   }

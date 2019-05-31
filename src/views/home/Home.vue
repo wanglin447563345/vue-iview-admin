@@ -1,5 +1,5 @@
 <template>
     <div>
-        home
+        {{$t('home.HOME')}}
     </div>
 </template>
