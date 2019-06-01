@@ -27,7 +27,7 @@
                 },
                 ruleInline: {
                     user: [
-                        { required: true, message: '4343', trigger: 'blur' }
+                        { required: true, message: `$t('login.VALUDATENAME')`, trigger: 'blur' }
                     ],
                     password: [
                         { required: true, message: 'Please fill in the password.', trigger: 'blur' },

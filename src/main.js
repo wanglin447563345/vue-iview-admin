@@ -20,6 +20,7 @@ Vue.component('Input', Input);
 Vue.component('FormItem', FormItem);
 Vue.component('Icon', Icon);
 
+require('../mock')
 Vue.config.productionTip = false
 
 new Vue({
