@@ -1,10 +1,10 @@
 <template>
-  <div class="admin_layout">
+  <div class="admin_layout " :class="[`admin_layout_${navTheme}`]">
     <div class="left_menu">
-      <left-menu></left-menu>
+      <left-menu :theme='navTheme'></left-menu>
     </div>
     <div class="right_cont">
-      <top-bar></top-bar>
+      <Header></Header>
       <Breadcrumb>
         <BreadcrumbItem to="/">Home</BreadcrumbItem>
         <BreadcrumbItem to="/components/breadcrumb">Components</BreadcrumbItem>
@@ -14,34 +14,46 @@
           <router-view></router-view>
       </div>
     </div>
+    <drawer-setting></drawer-setting>
   </div>
 </template>
 
 <script>
-import {
-    LeftMenu,
-    TopBar,
-} from '../components'
+import Header from './Header'
+import LeftMenu from './LeftMenu'
+import DrawerSetting from './DrawerSetting'
 import {
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
 } from 'iview'
 export default {
+  computed: {
+    navTheme() {
+      return this.$route.query.theme || 'dark'
+    }
+  },
     components: {
         LeftMenu,
-        TopBar,
+        Header,
         Breadcrumb,
-        BreadcrumbItem
+        BreadcrumbItem,
+        DrawerSetting
     }
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .admin_layout{
     display: flex;
     height: 100vh;
     .left_menu{
-        background: #515a6e
+        border-right: 1px solid #dcdee2;
+        background: #515a6e;
+        .ivu-menu{
+          &::after{
+            width: 0
+          }
+        }
     }
     .right_cont{
         flex: 1;
@@ -56,6 +68,20 @@ export default {
         .ivu-breadcrumb{
             height: 3vh;
         }
+    }
+    .open_drawer{
+        position: fixed;
+        top: 50%;
+        right: 0;
+        
+    }
+    
+}
+.admin_layout_light{
+    display: flex;
+    height: 100vh;
+    .left_menu{
+        background: #fff;
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <Menu active-name="1-2" :open-names="['1']" theme='dark'>
+  <Menu active-name="1-2" :open-names="['1']" :theme='theme'>
         <Submenu name="1">
           <template slot="title">
             <Icon type="ios-analytics"/>Navigation One
@@ -45,6 +45,12 @@ import {
     MenuItem
 } from "iview";
 export default {
+  props:{
+    theme: {
+      type: String,
+      default: 'dark'
+    }
+  },
     components: {
         Menu,
         Submenu,

@@ -16,6 +16,14 @@ module.exports = {
     port,
   },
 
+  css: {
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      }
+    }
+  },
+
 
   // 这里的配置会通过 webpack-merge 合并到最终的配置中
   configureWebpack: {

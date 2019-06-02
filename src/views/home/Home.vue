@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<style lang="scss">
+<style lang="less">
     .home{
         display: grid;
         height: 100%;

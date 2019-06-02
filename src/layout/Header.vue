@@ -72,10 +72,10 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="less">
 .top_bar {
     height: 5vh;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #dcdee2;
     display: flex;
     align-items: center;
     justify-content: flex-end;

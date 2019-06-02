@@ -2,8 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router.js'
 import store from './store'
-import 'iview/dist/styles/iview.css';
+
 import i18n from './tools/i18n'
+
+window.MainColor = '#f00'
+
+
+import '../src/theme/index.less'
+
 
 import {
   Button,
@@ -11,7 +17,9 @@ import {
   Form,
   Input,
   FormItem,
-  Icon
+  Icon,
+  Radio,
+  RadioGroup
 } from 'iview';
 Vue.component('Button', Button);
 Vue.component('Table', Table);
@@ -19,6 +27,8 @@ Vue.component('Form', Form);
 Vue.component('Input', Input);
 Vue.component('FormItem', FormItem);
 Vue.component('Icon', Icon);
+Vue.component('Radio', Radio)
+Vue.component('RadioGroup', RadioGroup)
 
 require('../mock')
 Vue.config.productionTip = false

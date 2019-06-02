@@ -5,11 +5,16 @@
       </div>
         <h1>vue-iview-admin</h1>
         <router-view></router-view>
+        <Footer></Footer>
     </div>
 </template>
 
 <script type="text/javascript">
+import Footer from './Footer'
   export default {
+    components: {
+      Footer
+    },
     methods: {
       langToggle(type){
         localStorage.setItem('language',type)
@@ -24,7 +29,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="less">
     .user_layout{
         min-height: 100vh;
         background: #f7f7f7;

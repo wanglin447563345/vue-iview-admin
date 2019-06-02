@@ -51,7 +51,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="less" scope>
   .login{
     border: 1px solid #ccc;
     box-shadow: 0 0 5px 1px #ccc;
