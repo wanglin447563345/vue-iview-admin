@@ -5,13 +5,18 @@
     </div>
     <div class="right_cont">
       <Header></Header>
-      <Breadcrumb>
-        <BreadcrumbItem to="/">Home</BreadcrumbItem>
-        <BreadcrumbItem to="/components/breadcrumb">Components</BreadcrumbItem>
-        <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
-      </Breadcrumb>
+      <div class="brand_nav">
+        <Breadcrumb>
+          <BreadcrumbItem to="/">Home</BreadcrumbItem>
+          <BreadcrumbItem to="/components/breadcrumb">Components</BreadcrumbItem>
+          <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
       <div class="content">
           <router-view></router-view>
+      </div>
+      <div class="footer">
+        <Footer></Footer>
       </div>
     </div>
     <drawer-setting></drawer-setting>
@@ -22,6 +27,7 @@
 import Header from './Header'
 import LeftMenu from './LeftMenu'
 import DrawerSetting from './DrawerSetting'
+import Footer from './Footer'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -37,7 +43,8 @@ export default {
         Header,
         Breadcrumb,
         BreadcrumbItem,
-        DrawerSetting
+        DrawerSetting,
+        Footer
     }
 };
 </script>
@@ -59,23 +66,28 @@ export default {
         flex: 1;
         background: #f5f5f5;
         .content{
-            height: 90vh;
-            margin: 0 0 1vh;
+            min-height: calc(93vh - 70px);
             background: #ffffff;
-            margin: 0 2vh;
+            margin: 0 2vh 1vh;
             overflow-y: auto;
         }
         .ivu-breadcrumb{
-            height: 3vh;
+            height: 30px;
+            line-height: 30px;
+             padding: 0 20px
         }
     }
+  .footer{
+    height: 40px;
+    line-height: 40px;
+  }
     .open_drawer{
         position: fixed;
         top: 50%;
         right: 0;
-        
+
     }
-    
+
 }
 .admin_layout_light{
     display: flex;

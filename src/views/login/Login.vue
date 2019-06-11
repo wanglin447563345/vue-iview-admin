@@ -1,31 +1,32 @@
 <template>
     <div class="login">
-      <Form ref="formInline" :model="formInline" :rules="ruleInline">
+      <Form ref="formLogin" :model="formLogin" :rules="ruleLogin">
         <FormItem prop="user">
-          <Input type="text" v-model="formInline.user" :placeholder="$t('login.USERNAME')">
+          <Input type="text" v-model="formLogin.user" :placeholder="$t('login.USERNAME')">
             <Icon type="ios-person-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem prop="password">
-          <Input type="password" v-model="formInline.password" :placeholder="$t('login.PASSWORD')">
+          <Input type="password" v-model="formLogin.password" :placeholder="$t('login.PASSWORD')">
             <Icon type="ios-lock-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="handleSubmit('formInline')">{{$t('login.LOGIN')}}</Button>
+          <Button type="primary" @click="handleSubmit('formLogin')">{{$t('login.LOGIN')}}</Button>
         </FormItem>
       </Form>
     </div>
 </template>
 <script>
+  import {login} from '../../api'
     export default {
         data () {
             return {
-                formInline: {
+              formLogin: {
                     user: '',
                     password: ''
                 },
-                ruleInline: {
+              ruleLogin: {
                     user: [
                         { required: true, message: `$t('login.VALUDATENAME')`, trigger: 'blur' }
                     ],
@@ -37,11 +38,16 @@
             }
         },
         methods: {
-            handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+            handleSubmit(formLogin) {
+                this.$refs[formLogin].validate((valid) => {
                     if (valid) {
-                      this.$router.push('/admin/home')
-                        this.$Message.success('Success!');
+                      login(formLogin).then(data => {
+                        // if () {
+                        //
+                        // }
+                      })
+                      this.$Message.success('Success!');
+                      this.$router.push('/home/analysis')
                     } else {
                         this.$Message.error('Fail!');
                     }

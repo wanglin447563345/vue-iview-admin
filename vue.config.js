@@ -13,6 +13,7 @@ function resolve(dir) {
 
 module.exports = {
   devServer: {
+    open: true,
     port,
   },
 

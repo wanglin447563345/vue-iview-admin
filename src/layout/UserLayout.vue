@@ -5,7 +5,9 @@
       </div>
         <h1>vue-iview-admin</h1>
         <router-view></router-view>
-        <Footer></Footer>
+        <div class="login_layout_footer">
+          <Footer></Footer>
+        </div>
     </div>
 </template>
 
@@ -36,6 +38,7 @@ import Footer from './Footer'
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
       .language{
         align-self: flex-end;
         padding: 10px 50px;
@@ -49,6 +52,10 @@ import Footer from './Footer'
         font-size: 50px;
         text-align: center;
         margin: 10vh 0 6vh;
+      }
+      .login_layout_footer{
+        position: absolute;
+        bottom: 30px;
       }
     }
 </style>
