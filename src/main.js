@@ -5,6 +5,7 @@ import store from './store'
 
 import i18n from './tools/i18n'
 
+
 window.MainColor = '#f00'
 
 
@@ -19,7 +20,9 @@ import {
   FormItem,
   Icon,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Page,
+  Modal
 } from 'iview';
 Vue.component('Button', Button);
 Vue.component('Table', Table);
@@ -29,6 +32,8 @@ Vue.component('FormItem', FormItem);
 Vue.component('Icon', Icon);
 Vue.component('Radio', Radio)
 Vue.component('RadioGroup', RadioGroup)
+Vue.component('Page', Page)
+Vue.component('Modal', Modal)
 
 require('../mock')
 Vue.config.productionTip = false

@@ -66,10 +66,12 @@ export default {
         flex: 1;
         background: #f5f5f5;
         .content{
-            min-height: calc(93vh - 70px);
+            min-height: calc(98vh - 120px);
             background: #ffffff;
             margin: 0 2vh 1vh;
             overflow-y: auto;
+            padding: 20px 15px;
+            box-sizing: border-box
         }
         .ivu-breadcrumb{
             height: 30px;

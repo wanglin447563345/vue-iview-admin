@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         {{$t('home.HOME')}}
-        <div @click="loginin">dsds</div>
+        <echarts></echarts>
     </div>
 </template>
 
@@ -14,17 +14,16 @@
 </style>
 
 <script>
-import {login} from '../../api'
+import {Echarts} from '../../components'
 export default {
     data () {
         return {}
     },
+    components: {
+        Echarts
+    },
     methods: {
-        loginin(){
-            login().then(data => {
-                console.log(data)
-            })
-        }
+        
     }
 }
 </script>

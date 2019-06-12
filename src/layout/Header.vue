@@ -74,7 +74,7 @@ export default {
 </script>
 <style lang="less">
 .top_bar {
-    height: 5vh;
+    height: 50px;
     border-bottom: 1px solid #dcdee2;
     display: flex;
     align-items: center;
