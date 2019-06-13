@@ -30,6 +30,23 @@
             </template>
             <MenuItem name="basic_form" to='/form/basic_form'>基础表单</MenuItem>
         </Submenu>
+        <Submenu name="chart">
+            <template slot="title">
+                <Icon type="ios-cog" />
+                图表
+            </template>
+            <MenuItem name="echart" to='/chart/echart'>echart</MenuItem>
+            <MenuItem name="highchart" to='/chart/highchart'>highchart</MenuItem>
+        </Submenu>
+        <Submenu name="map">
+            <template slot="title">
+                <Icon type="ios-cog" />
+                地图
+            </template>
+            <MenuItem name="baidu" to='/map/baidu'>百度地图</MenuItem>
+            <MenuItem name="google" to='/map/google'>谷歌地图</MenuItem>
+            <MenuItem name="gaode" to='/map/gaode'>高德地图</MenuItem>
+        </Submenu>
   </Menu>
 </template>
 

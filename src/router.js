@@ -86,6 +86,47 @@ const router = new Router({
               component: () => import('./views/form/BasicFrom.vue')
             }
           ]
+        },{
+          path: '/chart',
+          name: 'chart',
+          meta: {icon: 'ios-create-outline', title: '图表'},
+          component: {render: h => h('router-view')},
+          children: [
+            {
+              path: 'echart',
+              name: 'echart',
+              meta: {title: 'echart图表'},
+              component: () => import('./views/charts/echarts.vue')
+            },{
+              path: 'highchart',
+              name: 'highchart',
+              meta: {title: 'highchart图表'},
+              component: () => import('./views/charts/highcharts.vue')
+            }
+          ]
+        },{
+          path: '/map',
+          name: 'map',
+          meta: {icon: 'ios-create-outline', title: '地图'},
+          component: {render: h => h('router-view')},
+          children: [
+            {
+              path: 'baidu',
+              name: 'baidu',
+              meta: {title: 'baidu地图'},
+              component: () => import('./views/map/baidu.vue')
+            },{
+              path: 'google',
+              name: 'google',
+              meta: {title: 'google地图'},
+              component: () => import('./views/map/google.vue')
+            },{
+              path: 'gaode',
+              name: 'gaode',
+              meta: {title: 'gaode地图'},
+              component: () => import('./views/map/gaode.vue')
+            }
+          ]
         }
       ]
     },
