@@ -75,9 +75,9 @@ export default {
     MenuItem
   },
   mounted() {
-    const names = this.$route.path.split("/");
-    this.activeName = names[names.length - 1];
-    this.openNames.push(names[1]);   // 这里要注意openNames的复制必须写在$$nextTick外面，不然不起作用，但activeName却可以写在里面
+    const pathArr = this.$route.path.split("/");
+    this.activeName = pathArr[pathArr.length - 1];
+    this.openNames.push(pathArr[1]);   // 这里要注意openNames的复制必须写在$$nextTick外面，不然不起作用，但activeName却可以写在里面
     this.$nextTick(() => {
       this.$refs.leftNav.updateOpened();
       this.$refs.leftNav.updateActiveName();
