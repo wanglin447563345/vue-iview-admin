@@ -4,7 +4,7 @@
       <Input search enter-button="搜索" placeholder="Enter something..."/>
       <div class="btns">
         <Button type="success">添加</Button>
-        <Button type="info">导出excel</Button>
+        <Button type="info" @click = 'exportTable'>导出excel</Button>
       </div>
     </div>
     <Table :columns="columns1" :data="data1"></Table>
@@ -15,6 +15,8 @@
 </template>
 <script>
 import  DeleteBtn from "../../components/DeteleBtn.vue";
+import XLSX from 'xlsx';
+import {openDownloadDialog, sheet2blob} from '../../tools/tool'
 export default {
   data() {
     return {
@@ -123,7 +125,13 @@ export default {
     },
     remove(index) {
       this.data1.splice(index, 1);
-    }
+    },
+      exportTable () {
+        const exportData = [['姓名', '年龄', '地址']].concat(this.data1.map(item => Object.values(item)))
+          console.log(exportData)
+          const sheet = XLSX.utils.aoa_to_sheet(exportData)
+          openDownloadDialog(sheet2blob(sheet), '报表.xlsx');
+      }
   }
 };
 </script>
