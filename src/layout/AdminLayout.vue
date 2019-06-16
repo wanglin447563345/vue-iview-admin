@@ -65,11 +65,13 @@ export default {
     .right_cont{
         flex: 1;
         background: #f5f5f5;
+        min-height: calc(98vh - 120px);
+        overflow-y: auto;
         .content{
             min-height: calc(98vh - 120px);
             background: #ffffff;
             margin: 0 2vh 1vh;
-            overflow-y: auto;
+            
             padding: 20px 15px;
             box-sizing: border-box
         }

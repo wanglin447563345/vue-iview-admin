@@ -127,11 +127,29 @@ const router = new Router({
               component: () => import('./views/map/gaode.vue')
             }
           ]
+        },{
+          path: '/editor',
+          name: 'editor',
+          meta: {icon: 'ios-create-outline', title: '编辑器'},
+          component: {render: h => h('router-view')},
+          children: [
+            {
+              path: 'wangeditor',
+              name: 'wangeditor',
+              meta: {title: 'wangeditor编辑器'},
+              component: () => import('./views/editors/WangEditor.vue')
+            },{
+              path: 'ueditor',
+              name: 'ueditor',
+              meta: {title: 'ueditor编辑器'},
+              component: () => import('./views/editors/Ueditor.vue')
+            }
+          ]
         }
       ]
     },
     {
-      path: '/404',
+      path: '*',
       hideInMenu: true,
       name: 'NotFound',
       conponent: () => import('./views/notfound/NotFound.vue')

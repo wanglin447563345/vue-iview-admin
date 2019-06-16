@@ -43,6 +43,13 @@
       <MenuItem name="google" to="/map/google">谷歌地图</MenuItem>
       <MenuItem name="gaode" to="/map/gaode">高德地图</MenuItem>
     </Submenu>
+    <Submenu name="editor">
+      <template slot="title">
+        <Icon type="ios-cog"/>编辑器
+      </template>
+      <MenuItem name="wangeditor" to="/editor/wangeditor">WangEditor</MenuItem>
+      <MenuItem name="ueditor" to="/editor/ueditor">Ueditor</MenuItem>
+    </Submenu>
   </Menu>
 </template>
 
