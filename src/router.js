@@ -3,6 +3,10 @@ import Router from 'vue-router'
 import UserLayout from './layout/UserLayout.vue'
 import AdminLayout from './layout/AdminLayout.vue'
 import NProgress from 'nprogress'
+import "nprogress/nprogress.css";
+import findLast from "lodash/findLast";
+import { check, isLogin } from "./tools/auth";
+
 
 Vue.use(Router)
 
@@ -34,6 +38,7 @@ const router = new Router({
     },
     {
       path: '/',
+      meta: { authority: ["user", "admin"] },
       component: AdminLayout,
       children: [
         {
@@ -47,7 +52,7 @@ const router = new Router({
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'analysis',
+              path: '/home/analysis',
               name: 'analysis',
               meta: {title: '分析页'},
               component: () => import('./views/home/Home.vue')
@@ -61,13 +66,13 @@ const router = new Router({
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'basic_table',
+              path: '/table/basic_table',
               name: 'basic_table',
               meta: {title: '基础表格'},
               component: () => import('./views/table/BasicTable.vue')
             },
             {
-              path: 'drag_table',
+              path: '/table/drag_table',
               name: 'dynamic_table',
               meta: {title: '可拖拽表格'},
               component: () => import('./views/table/DragTable.vue')
@@ -76,11 +81,11 @@ const router = new Router({
         }, {
           path: '/form',
           name: 'form',
-          meta: {icon: 'ios-create-outline', title: '表单'},
+          meta: {icon: 'ios-create-outline', title: '表单', authority: ["admin"] },
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'basic_form',
+              path: '/form/basic_form',
               name: 'basic_form',
               meta: {title: '基础表单'},
               component: () => import('./views/form/BasicFrom.vue')
@@ -93,12 +98,12 @@ const router = new Router({
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'echart',
-              name: 'echart',
+              path: '/chart/echart',
+              name: '/chart/echart',
               meta: {title: 'echart图表'},
               component: () => import('./views/charts/echarts.vue')
             },{
-              path: 'highchart',
+              path: '/chart/highchart',
               name: 'highchart',
               meta: {title: 'highchart图表'},
               component: () => import('./views/charts/highcharts.vue')
@@ -111,17 +116,17 @@ const router = new Router({
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'baidu',
+              path: '/map/baidu',
               name: 'baidu',
               meta: {title: 'baidu地图'},
               component: () => import('./views/map/baidu.vue')
             },{
-              path: 'google',
+              path: '/map/google',
               name: 'google',
               meta: {title: 'google地图'},
               component: () => import('./views/map/google.vue')
             },{
-              path: 'gaode',
+              path: '/map/gaode',
               name: 'gaode',
               meta: {title: 'gaode地图'},
               component: () => import('./views/map/gaode.vue')
@@ -134,12 +139,12 @@ const router = new Router({
           component: {render: h => h('router-view')},
           children: [
             {
-              path: 'wangeditor',
+              path: '/editor/wangeditor',
               name: 'wangeditor',
               meta: {title: 'wangeditor编辑器'},
               component: () => import('./views/editors/WangEditor.vue')
             },{
-              path: 'ueditor',
+              path: ' /editor/ueditor',
               name: 'ueditor',
               meta: {title: 'ueditor编辑器'},
               component: () => import('./views/editors/Ueditor.vue')
@@ -161,6 +166,16 @@ router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
   }
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login"
+      });
+    } 
+    NProgress.done();
+  }
+
   next();
 });
 

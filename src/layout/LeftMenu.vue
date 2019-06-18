@@ -9,52 +9,25 @@
     @on-open-change="handleOpen"
     ref="leftNav"
   >
-    <Submenu name="home">
+  <template v-if="menuData.length>0" v-for="submenu in menuData" :keys='submenu.name'>
+    <Submenu :name="submenu.name">
       <template slot="title">
-        <Icon type="ios-analytics"/>主页
+        <Icon type="ios-analytics"/>{{submenu.meta.title}}
       </template>
-      <MenuItem name="analysis" to="/home/analysis">分析页</MenuItem>
-    </Submenu>
-    <Submenu name="table">
-      <template slot="title">
-        <Icon type="ios-filing"/>表格
+      <template v-for="menuitem in submenu.children" :keys='menuitem.name'>
+        <MenuItem :name="menuitem.name" :to="menuitem.path">{{menuitem.meta.title}}</MenuItem>
       </template>
-      <MenuItem name="basic_table" to="/table/basic_table">基础表格</MenuItem>
-      <MenuItem name="drag_table" to="/table/drag_table">可拖动表格</MenuItem>
     </Submenu>
-    <Submenu name="form">
-      <template slot="title">
-        <Icon type="ios-cog"/>表单
-      </template>
-      <MenuItem name="basic_form" to="/form/basic_form">基础表单</MenuItem>
-    </Submenu>
-    <Submenu name="chart">
-      <template slot="title">
-        <Icon type="ios-cog"/>图表
-      </template>
-      <MenuItem name="echart" to="/chart/echart">echart</MenuItem>
-      <MenuItem name="highchart" to="/chart/highchart">highchart</MenuItem>
-    </Submenu>
-    <Submenu name="map">
-      <template slot="title">
-        <Icon type="ios-cog"/>地图
-      </template>
-      <MenuItem name="baidu" to="/map/baidu">百度地图</MenuItem>
-      <MenuItem name="google" to="/map/google">谷歌地图</MenuItem>
-      <MenuItem name="gaode" to="/map/gaode">高德地图</MenuItem>
-    </Submenu>
-    <Submenu name="editor">
-      <template slot="title">
-        <Icon type="ios-cog"/>编辑器
-      </template>
-      <MenuItem name="wangeditor" to="/editor/wangeditor">WangEditor</MenuItem>
-      <MenuItem name="ueditor" to="/editor/ueditor">Ueditor</MenuItem>
-    </Submenu>
+  </template>
+  <template v-else>
+    暂无数据
+  </template>
   </Menu>
 </template>
 
 <script>
 import { Menu, Submenu, MenuItem } from "iview";
+import {check} from '../tools/auth'
 export default {
   props: {
     theme: {
@@ -63,9 +36,11 @@ export default {
     }
   },
   data() {
+    const menuData = this.getMenuData(this.$router.options.routes)
     return {
       openNames: [],
-      activeName: this.$route.name
+      activeName: this.$route.name,
+      menuData
     };
   },
   methods: {
@@ -74,6 +49,40 @@ export default {
     },
     handleOpen(v) {
       this.openNames = v;
+    },
+    getMenuData(routes = [], parentKeys = [], selectedKey) {
+      const menuData = [];
+      for (let item of routes) {
+        // if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+        //   continue;
+        // }
+        if (item.name && !item.hideInMenu) {
+          const newItem = { ...item };
+          delete newItem.children;
+          if (item.children) {
+            newItem.children = this.getMenuData(item.children, [
+              ...parentKeys,
+              item.path
+            ]);
+          } else {
+            this.getMenuData(
+              item.children,
+              selectedKey ? parentKeys : [...parentKeys, item.path],
+              selectedKey || item.path
+            );
+          }
+          menuData.push(newItem);
+        } else if (
+          !item.hideInMenu && item.children
+        ) {
+          menuData.push(
+            ...this.getMenuData(item.children, [...parentKeys, item.path])
+          );
+        }
+      }
+      console.log(menuData)
+      return menuData;
+      
     }
   },
   components: {

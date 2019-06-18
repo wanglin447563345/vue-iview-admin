@@ -26,12 +26,16 @@ export default {
       this.echarts.setOption(this.options);
     },
     changeResize () {
+      console.log(111)
         this.echarts.resize()
     }
   },
+  created() {
+    this.changeResize = debounce(this.changeResize,500)
+  },
 
   mounted() {
-    this.initChart();
+    this.initChart()
   },
   beforeDestroy () {
       removeListener(this.$refs.echartDom, this.changeResize)
