@@ -144,10 +144,10 @@ const router = new Router({
               meta: {title: 'wangeditor编辑器'},
               component: () => import('./views/editors/WangEditor.vue')
             },{
-              path: ' /editor/ueditor',
-              name: 'ueditor',
-              meta: {title: 'ueditor编辑器'},
-              component: () => import('./views/editors/Ueditor.vue')
+              path: '/editor/tinymce',
+              name: 'tinymce',
+              meta: {title: 'tinymce编辑器'},
+              component: () => import('./views/editors/Tinymce.vue')
             }
           ]
         }

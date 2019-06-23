@@ -80,7 +80,6 @@ export default {
           );
         }
       }
-      console.log(menuData)
       return menuData;
       
     }

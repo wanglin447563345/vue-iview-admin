@@ -22,7 +22,14 @@ import {
   Radio,
   RadioGroup,
   Page,
-  Modal
+  Modal,
+  Row,
+  Col,
+  DatePicker,
+  TimePicker,
+  CheckboxGroup,
+  Checkbox,
+  Select
 } from 'iview';
 Vue.component('Button', Button);
 Vue.component('Table', Table);
@@ -34,6 +41,13 @@ Vue.component('Radio', Radio)
 Vue.component('RadioGroup', RadioGroup)
 Vue.component('Page', Page)
 Vue.component('Modal', Modal)
+Vue.component('Row', Row)
+Vue.component('Col', Col)
+Vue.component('DatePicker', DatePicker)
+Vue.component('TimePicker', TimePicker)
+Vue.component('CheckboxGroup', CheckboxGroup)
+Vue.component('Checkbox', Checkbox)
+Vue.component('Select', Select)
 
 require('../mock')
 Vue.config.productionTip = false
