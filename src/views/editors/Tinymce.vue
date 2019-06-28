@@ -1,19 +1,19 @@
 <template>
   <div>
-    <tinymce-editor ref="editor1"
+    <tinymce ref="editor1"
       v-model="msg1"
       :disabled="disabled"
       @onClick="onClick">
-    </tinymce-editor>
+    </tinymce>
     <button @click="clear($refs.editor1)">清空内容</button>
     <button @click="disabled1 = true">禁用</button>
     <p>你输入的内容：  {{ msg1 }}</p>
 
-    <tinymce-editor ref="editor2"
+    <tinymce ref="editor2"
       v-model="msg2"
       :disabled="disabled"
       @onClick="onClick">
-    </tinymce-editor>
+    </tinymce>
     <button @click="clear($refs.editor2)">清空内容</button>
     <button @click="disabled2 = true">禁用</button>
     <p>你输入的内容：  {{ msg2 }}</p>
@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import TinymceEditor from '../../components/TinymceEditor'
+import {Tinymce} from '../../components'
 export default {
   components: {
-    TinymceEditor
+    Tinymce
   },
   data () {
     return {

@@ -15,6 +15,9 @@
           <Button type="primary" @click="handleSubmit('formLogin')">{{$t('login.LOGIN')}}</Button>
         </FormItem>
       </Form>
+      <div class="toregister">
+        没有账号去<span @click='toRegister'>注册</span>
+      </div>
     </div>
 </template>
 <script>
@@ -52,6 +55,9 @@
                         this.$Message.error('Fail!');
                     }
                 })
+            },
+            toRegister () {
+              this.$router.push('/user/register')
             }
         }
     }
@@ -67,6 +73,13 @@
       width: 280px;
       button{
         width: 100%;
+      }
+    }
+    .toregister{
+      text-align: right;
+      span{
+        color: #2d8cf0;
+        cursor: pointer
       }
     }
   }

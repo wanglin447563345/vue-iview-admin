@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import WangEditor from '../../components/WangEditor.vue'
+import {WangEditor} from '../../components'
 export default {
     data () {
         return {

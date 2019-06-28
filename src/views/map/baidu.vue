@@ -1,26 +1,43 @@
 <template>
-    <div>
-        <div id="allmap" class="allmap"></div> 
+    <div class="bmap">
+        <Bmap class="map" style='height: 500px'></Bmap>
+        <BmapMark v-model="point" class="mark" style='height: 500px'></BmapMark>
+        <p>经度：{{point.lng}}<br>维度：{{point.lat}}</p>
     </div>
+    
 </template>
 <script>
+import {Bmap, BmapMark} from '../../components'
 export default {
-    mounted() {
-        var map = new BMap.Map("allmap");          // 创建地图实例  
-      var point = new BMap.Point(116.331398,39.897445);  // 创建点坐标  
-      map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别      
-      map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放 
+    data () {
+        return {
+            point: {
 
-      map.addControl(new BMap.NavigationControl());    
-      map.addControl(new BMap.ScaleControl());    
-      map.addControl(new BMap.OverviewMapControl());    
-      map.addControl(new BMap.MapTypeControl());    
-      map.setCurrentCity("武汉"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+            }
+        }
+    },
+    components: {
+        Bmap,
+        BmapMark
+    },
+    mounted() {
+
     }
 }
 </script>
 <style lang="less">
-    .allmap{
-        height: 500px;
+    .bmap{
+        display: flex;
+        width: 100%;
+        .map{
+            flex: 1;
+            height: 500px;
+            margin-right: 10px;
+        }
+        .mark{
+            flex: 1;
+            height: 500px;
+            margin-left: 10px
+        }
     }
 </style>
